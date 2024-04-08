@@ -13,3 +13,7 @@ pubspec.lock
 *.log
 .DS_Store
 
+*.iml
+*.ipr
+*.iws
+.idea/
