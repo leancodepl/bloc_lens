@@ -92,6 +92,13 @@ macro class MakeLenses implements ClassDeclarationsMacro {
     }
 
     final fields = await builder.fieldsOf(declaration);
+    for (final field in fields) {
+      builder.error(
+        '${field.identifier.name}: ${field.metadata}',
+        target: field.asDiagnosticTarget,
+        enabled: false,
+      );
+    }
 
     for (final FieldDeclaration(identifier: Identifier(:name)) in fields) {
       if (constructor.namedParameters.none((p) => name == p.identifier.name)) {
