@@ -4,7 +4,7 @@ version: 1.0.0
 publish_to: none
 
 environment:
-  sdk: 3.5.0-36.0.dev
+  sdk: 3.5.0-47.0.dev
 
 dependencies:
   bloc: ^8.1.4
@@ -24,14 +24,4 @@ dependency_overrides:
     git:
       url: https://github.com/dart-lang/sdk.git
       path: pkg/_fe_analyzer_shared
-      ref: main
-  _macros:
-    git:
-      url: https://github.com/dart-lang/sdk.git
-      path: pkg/_macros
-      ref: main
-  macros:
-    git:
-      url: https://github.com/dart-lang/sdk.git
-      path: pkg/macros
       ref: main
