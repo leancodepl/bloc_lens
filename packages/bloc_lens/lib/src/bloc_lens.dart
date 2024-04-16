@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
-
-import 'lens.dart';
+import 'package:lens_base/lens_base.dart';
 
 typedef BlocGetter<S, T> = T Function(S state);
 typedef BlocSetter<S, T> = S Function(S state, T value);

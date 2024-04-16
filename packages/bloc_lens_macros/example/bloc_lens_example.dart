@@ -3,7 +3,7 @@
 import 'dart:collection';
 
 import 'package:bloc/bloc.dart';
-import 'package:bloc_lens/bloc_lens.dart';
+import 'package:bloc_lens_macros/bloc_lens_macros.dart';
 
 void main() {
   print('\n=== MyRecordStateCubit ===');
