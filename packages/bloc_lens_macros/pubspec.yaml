@@ -1,6 +1,6 @@
 name: bloc_lens_macros
 description: Macros for bloc_lens
-version: 1.0.0
+version: 0.1.0
 repository: https://github.com/leancodepl/bloc_lens
 homepage: https://github.com/leancodepl/bloc_lens/tree/main/packages/bloc_lens_macros
 
