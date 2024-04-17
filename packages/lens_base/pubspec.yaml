@@ -1,5 +1,5 @@
 name: lens_base
-description: A starting point for Dart libraries or applications.
+description: Functional lenses for Dart. Get and set values, even in nested structures.
 version: 1.0.0
 repository: https://github.com/leancodepl/bloc_lens
 homepage: https://github.com/leancodepl/bloc_lens/tree/main/packages/lens_base

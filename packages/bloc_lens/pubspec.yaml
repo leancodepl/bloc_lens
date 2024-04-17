@@ -1,5 +1,5 @@
 name: bloc_lens
-description: A starting point for Dart libraries or applications.
+description: Lenses and extensions based on lens_base, made for the bloc package.
 version: 1.0.0
 repository: https://github.com/leancodepl/bloc_lens
 homepage: https://github.com/leancodepl/bloc_lens/tree/main/packages/bloc_lens
