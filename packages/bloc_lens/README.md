@@ -1,39 +1,42 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# bloc_lens
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
+This package provides a set of bloc-specific classes, made to work with the [`lens_base`][lens_base] package.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+## Example usage
 
 ```dart
-const like = 'sample';
+class SettingsCubit extends Cubit<SettingsState> {
+  late final scaling = numberLens(
+    get: (s) => s.scaling,
+    set: (s, v) => s.copyWith(scaling: v),
+    min: 0.7,
+    max: 1.4,
+    step: 0.1,
+  );
+
+  late final hapticFeedback = boolLens(
+    get: (s) => s.hapticFeedback,
+    set: (s, v) => s.copyWith(hapticFeedback: v),
+  );
+  
+  late final themeMode = enumLens(
+    get: (s) => s.themeMode,
+    set: (s, v) => s.copyWith(themeMode: v),
+    values: ThemeMode.values,
+  );
+}
+
+class SettingsState {
+  const SettingsState({
+    required this.scaling,
+    required this.hapticFeedback,
+    required this.themeMode,
+  });
+
+  final double scaling;
+  final bool hapticFeedback;
+  final ThemeMode themeMode;
+}
 ```
 
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+[lens_base]: https://pub.dev/packages/lens_base

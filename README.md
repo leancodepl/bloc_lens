@@ -6,6 +6,11 @@
 | [`bloc_lens`][bloc_lens-link]               | [Documentation][bloc_lens-documentation]        | [![bloc_lens pub.dev badge][bloc_lens-pub-badge]][bloc_lens-pub-badge-link]                      |
 | [`bloc_lens_macros`][bloc_lens_macros-link] | [Documentation][bloc_lens_macros-documentation] | [![bloc_lens_macros pub.dev badge][bloc_lens_macros-pub-badge]][bloc_lens_macros-pub-badge-link] |
 
+## Overview
+
+The goal of these libraries is to provide simple and reusable tools for managing complex state
+in apps and packages.
+
 ---
 
 <p align="center">
