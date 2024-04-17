@@ -7,8 +7,5 @@ homepage: https://github.com/leancodepl/bloc_lens/tree/main/packages/lens_base
 environment:
   sdk: ^3.3.3
 
-dependencies:
-  # path: ^1.8.0
-
 dev_dependencies:
   leancode_lint: ^12.0.0

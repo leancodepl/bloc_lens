@@ -1,24 +1,45 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:bloc/bloc.dart';
+import 'package:bloc_lens/bloc_lens.dart';
 import 'package:collection/collection.dart';
 import 'package:macros/macros.dart';
 import 'package:meta/meta_meta.dart';
 
 // FIXME: doesn't carry over to metadata
+/// Provides additional options for a [NumberLens] for this field.
 @Target({TargetKind.field})
 class NumberOptions<T extends num> {
+  /// Creates a [NumberOptions] with the given options.
   const NumberOptions({
     this.min,
     this.max,
     this.step,
   });
 
+  /// Corresponds to [NumberLens.min].
   final T? min;
+
+  /// Corresponds to [NumberLens.max].
   final T? max;
+
+  /// Corresponds to [NumberLens.step].
   final T? step;
 }
 
+/// Generates lens fields for a Bloc.
+/// The target class must be a subclass of [BlocBase].
+///
+/// The state can be be a nominal type or a record.
+///
+/// If the state is a nominal type, it must:
+/// * have an unnamed constructor
+/// * have no positional parameters in the constructor
+/// * have no additional fields other than the constructor parameters
+///
+/// If the state is a record, it must have no positional fields.
 macro class MakeLenses implements ClassDeclarationsMacro {
+  /// Generates lens fields for a Bloc.
   const MakeLenses();
 
   @override
@@ -55,9 +76,9 @@ macro class MakeLenses implements ClassDeclarationsMacro {
 
     switch (stateType) {
       case NamedTypeAnnotation():
-        await buildLensesForNamedType(clazz, builder, stateType);
+        await _buildLensesForNamedType(clazz, builder, stateType);
       case RecordTypeAnnotation():
-        await buildLensesForRecord(clazz, builder, stateType);
+        await _buildLensesForRecord(clazz, builder, stateType);
       default:
         builder.error(
           'The class ${clazz.identifier.name} has an invalid state type',
@@ -66,7 +87,7 @@ macro class MakeLenses implements ClassDeclarationsMacro {
     }
   }
 
-  Future<void> buildLensesForNamedType(
+  Future<void> _buildLensesForNamedType(
     ClassDeclaration clazz,
     MemberDeclarationBuilder builder,
     NamedTypeAnnotation stateType,
@@ -110,7 +131,7 @@ macro class MakeLenses implements ClassDeclarationsMacro {
       }
     }
 
-    await buildLensFields(
+    await _buildLensFields(
       builder,
       fields: fields.map(
         (f) => (
@@ -124,7 +145,7 @@ macro class MakeLenses implements ClassDeclarationsMacro {
     );
   }
 
-  Future<void> buildLensesForRecord(
+  Future<void> _buildLensesForRecord(
     ClassDeclaration clazz,
     MemberDeclarationBuilder builder,
     RecordTypeAnnotation stateType,
@@ -137,7 +158,7 @@ macro class MakeLenses implements ClassDeclarationsMacro {
       return;
     }
 
-    await buildLensFields(
+    await _buildLensFields(
       builder,
       fields: stateType.namedFields.map(
         (f) => (
@@ -150,7 +171,7 @@ macro class MakeLenses implements ClassDeclarationsMacro {
     );
   }
 
-  Future<void> buildLensFields(
+  Future<void> _buildLensFields(
     MemberDeclarationBuilder builder, {
     required Iterable<
             ({

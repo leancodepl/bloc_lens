@@ -13,6 +13,7 @@ class _BoolLens extends BoolLens {
   void set(bool value) => _set(value);
 }
 
+/// Creates a [BoolLens] with the provided [get] and [set] functions.
 BoolLens makeBoolLens({
   required Getter<bool> get,
   required Setter<bool> set,
@@ -35,6 +36,7 @@ class _EnumLens<T> extends EnumLens<T> {
   final List<T> values;
 }
 
+/// Creates an [EnumLens] with the provided [get], [set], and [values].
 EnumLens<T> makeEnumLens<T>({
   required Getter<T> get,
   required Setter<T> set,
