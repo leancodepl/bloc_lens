@@ -85,4 +85,15 @@ class SettingsState {
 }
 ```
 
+---
+
+<p align="center">
+   <a href="https://leancode.co/?utm_source=readme&utm_medium=bloc_lens_package">
+      <img alt="LeanCode" src="https://leancodepublic.blob.core.windows.net/public/wide.png" width="300"/>
+   </a>
+   <p align="center">
+   Built with ☕️ by <a href="https://leancode.co/?utm_source=readme&utm_medium=bloc_lens_package">LeanCode</a>
+   </p>
+</p>
+
 [bloc_lens]: https://pub.dev/packages/bloc_lens
