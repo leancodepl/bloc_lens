@@ -1,10 +1,11 @@
 name: bloc_lens
 description: A starting point for Dart libraries or applications.
 version: 1.0.0
-# repository: https://github.com/my_org/my_repo
+repository: https://github.com/leancodepl/bloc_lens
+homepage: https://github.com/leancodepl/bloc_lens/tree/main/packages/bloc_lens
 
 environment:
-  sdk: ^3.5.0-61.0.dev
+  sdk: ^3.3.3
 
 dependencies:
   bloc: ^8.1.4
