@@ -6,7 +6,6 @@ import 'package:collection/collection.dart';
 import 'package:macros/macros.dart';
 import 'package:meta/meta_meta.dart';
 
-// FIXME: doesn't carry over to metadata
 /// Provides additional options for a [NumberLens] for this field.
 @Target({TargetKind.field})
 class NumberOptions<T extends num> {
