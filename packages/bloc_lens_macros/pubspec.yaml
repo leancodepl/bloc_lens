@@ -9,8 +9,7 @@ environment:
 
 dependencies:
   bloc: ^8.1.4
-  bloc_lens:
-    path: ../bloc_lens
+  bloc_lens: ^0.1.0
   collection: ^1.18.0
   macros: ^0.1.0-main.3
   meta: ^1.14.0
