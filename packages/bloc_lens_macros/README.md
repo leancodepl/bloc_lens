@@ -1,39 +1,88 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Macros for bloc_lens (experimental 🧪)
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
+This package provides macros to simplify the use of the [`bloc_lens`][bloc_lens] package.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
+# Motivation
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+The `bloc_lens` package simplifies working with large blocs. But in order to use it,
+you have to create a lens for every field in the state. The `MakeLenses` macro reads
+properties of the state class and generates lenses for them, taking into account types
+of each field.
 
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+## Before
 
 ```dart
-const like = 'sample';
+class SettingsCubit extends Cubit<SettingsState> {
+  late final scaling = numberLens(
+    get: (s) => s.scaling,
+    set: (s, v) => s.copyWith(scaling: v),
+    min: 0.7,
+    max: 1.4,
+    step: 0.1,
+  );
+
+  late final hapticFeedback = boolLens(
+    get: (s) => s.hapticFeedback,
+    set: (s, v) => s.copyWith(hapticFeedback: v),
+  );
+
+  late final showGrid = boolLens(
+    get: (s) => s.showGrid,
+    set: (s, v) => s.copyWith(showGrid: v),
+  );
+  
+  late final themeMode = enumLens(
+    get: (s) => s.themeMode,
+    set: (s, v) => s.copyWith(themeMode: v),
+    values: ThemeMode.values,
+  );
+  
+  late final locale = lens(
+    get: (s) => s.locale,
+    set: (s, v) => s.copyWith(locale: v),
+  );
+}
+
+class SettingsState {
+  const SettingsState({
+    required this.scaling,
+    required this.hapticFeedback,
+    required this.showGrid,
+    required this.themeMode,
+    required this.locale,
+  });
+
+  final double scaling;
+  final bool hapticFeedback;
+  final bool showGrid;
+  final ThemeMode themeMode;
+  final Locale locale;
+}
 ```
 
-## Additional information
+## After
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+```dart
+@MakeLenses()
+class SettingsCubit extends Cubit<SettingsState> {
+}
+
+class SettingsState {
+  const SettingsState({
+    required this.scaling,
+    required this.hapticFeedback,
+    required this.showGrid,
+    required this.themeMode,
+    required this.locale,
+  });
+
+  @NumberOptions(min: 0.7, max: 1.4, step: 0.1)
+  final double scaling;
+  final bool hapticFeedback;
+  final bool showGrid;
+  final ThemeMode themeMode;
+  final Locale locale;
+}
+```
+
+[bloc_lens]: https://pub.dev/packages/bloc_lens
