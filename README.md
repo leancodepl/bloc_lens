@@ -6,6 +6,17 @@
 | [`bloc_lens`][bloc_lens-link]               | [Documentation][bloc_lens-documentation]        | [![bloc_lens pub.dev badge][bloc_lens-pub-badge]][bloc_lens-pub-badge-link]                      |
 | [`bloc_lens_macros`][bloc_lens_macros-link] | [Documentation][bloc_lens_macros-documentation] | [![bloc_lens_macros pub.dev badge][bloc_lens_macros-pub-badge]][bloc_lens_macros-pub-badge-link] |
 
+---
+
+<p align="center">
+   <a href="https://leancode.co/?utm_source=readme&utm_medium=bloc_lens_package">
+      <img alt="LeanCode" src="https://leancodepublic.blob.core.windows.net/public/wide.png" width="300"/>
+   </a>
+   <p align="center">
+   Built with ☕️ by <a href="https://leancode.co/?utm_source=readme&utm_medium=bloc_lens_package">LeanCode</a>
+   </p>
+</p>
+
 [lens_base-link]: https://github.com/leancodepl/bloc_lens/tree/main/packages/lens_base
 [bloc_lens-link]: https://github.com/leancodepl/bloc_lens/tree/main/packages/bloc_lens
 [bloc_lens_macros-link]: https://github.com/leancodepl/bloc_lens/tree/main/packages/bloc_lens_macros
