@@ -1,39 +1,51 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
-
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+# Functional lenses for Dart
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+### Basic methods
 
 ```dart
-const like = 'sample';
+LensBase<int> lens;
+
+void main() {
+  // Get the value:
+  lens.get(); // 42
+
+  // Set the value:
+  lens.set(100);
+  lens.get(); // 100
+}
 ```
 
-## Additional information
+### Specialized methods
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+```dart
+NumberLens<int> numberLens;
+BoolLens boolLens;
+EnumLens<MyEnum> enumLens;
+ListLent<int> listLens;
+
+void main() {
+  // Numbers:
+  numberLens.get(); // 42
+  numberLens.increment();
+  numberLens.get(); // 43
+  
+  // Booleans:
+  boolLens.get(); // true
+  boolLens.toggle();
+  boolLens.get(); // false
+
+  // Enums:
+  enumLens.get(); // MyEnum.value1
+  enumLens.next();
+  enumLens.get(); // MyEnum.value2
+  
+  // Lists:
+  listLens.get(); // [1, 2, 3]
+  listLens.add(4);
+  listLens.get(); // [1, 2, 3, 4]
+  listLens.at(1).set(100);
+  listLens.get(); // [1, 100, 3, 4]
+}
+```
