@@ -23,7 +23,7 @@ void main() {
 NumberLens<int> numberLens;
 BoolLens boolLens;
 EnumLens<MyEnum> enumLens;
-ListLent<int> listLens;
+ListLens<int> listLens;
 
 void main() {
   // Numbers:
