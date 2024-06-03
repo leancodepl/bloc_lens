@@ -312,10 +312,16 @@ extension on TypeAnnotation {
   Future<bool> isEnum(DeclarationBuilder builder) async {
     final type = await dereferenceTypedef(builder);
     if (type case NamedTypeAnnotation(:final identifier)) {
-      final declaration = await builder.typeDeclarationOf(identifier);
-      // return declaration is EnumDeclaration;
-      return declaration is ClassDeclaration &&
-          declaration.superclass?.identifier.name == '_Enum';
+      return switch (await builder.typeDeclarationOf(identifier)) {
+        EnumDeclaration() => true,
+        ClassDeclaration(
+          superclass: NamedTypeAnnotation(
+            identifier: Identifier(name: '_Enum'),
+          ),
+        ) =>
+          true,
+        _ => false,
+      };
     }
 
     return false;
@@ -326,11 +332,13 @@ extension on Identifier {
   List<Object> generic(List<Code> typeParameters) {
     return [
       this,
-      if (typeParameters.isNotEmpty) '<',
-      ...typeParameters.expandIndexed((i, code) {
-        return [if (i > 0) ',', ...code.parts];
-      }),
-      if (typeParameters.isNotEmpty) '>',
+      if (typeParameters.isNotEmpty) ...[
+        '<',
+        ...typeParameters.expandIndexed((i, code) {
+          return [if (i > 0) ',', ...code.parts];
+        }),
+        '>',
+      ],
     ];
   }
 }
