@@ -40,6 +40,13 @@ void main() {
   myNamedStateCubit.anEnum.next();
   print(myNamedStateCubit.state);
   print(myNamedStateCubit.anEnum.values);
+  print(
+    (
+      min: myNamedStateCubit.anInt.min,
+      max: myNamedStateCubit.anInt.max,
+      step: myNamedStateCubit.anInt.step,
+    ),
+  );
 
   print('\n=== MyAliasedStateCubit ===');
   final myAliasedStateCubit = MyAliasedStateCubit();
@@ -54,6 +61,13 @@ void main() {
   myAliasedStateCubit.anEnum.next();
   print(myAliasedStateCubit.state);
   print(myAliasedStateCubit.anEnum.values);
+  print(
+    (
+      min: myAliasedStateCubit.anInt.min,
+      max: myAliasedStateCubit.anInt.max,
+      step: myAliasedStateCubit.anInt.step,
+    ),
+  );
 }
 
 // throws: not a bloc

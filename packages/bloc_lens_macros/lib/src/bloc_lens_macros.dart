@@ -242,7 +242,7 @@ macro class MakeLenses implements ClassDeclarationsMacro {
           switch (field.metadata
               .whereType<ConstructorMetadataAnnotation>()
               .firstWhereOrNull(
-                (m) => m.constructor.name == 'NumberOptions',
+                (m) => m.type.identifier.name == 'NumberOptions',
               )) {
             ConstructorMetadataAnnotation(:final namedArguments) => [
                 if (namedArguments['min'] case final min?) ...[
