@@ -1,3 +1,4 @@
 ## 0.1.0-dev.1
 
-- Initial version in progress...
+- Initial version.
+- Create a basic lens-generating macro.
