@@ -1,0 +1,25 @@
+name: bloc_lens_example
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: 3.4.3
+  flutter: 3.22.2
+
+dependencies:
+  bloc_lens:
+    path: ../../../bloc_lens
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.5
+
+dev_dependencies:
+  leancode_lint: ^12.1.0
+
+dependency_overrides:
+  lens_base:
+    path: ../../../lens_base
+
+flutter:
+  uses-material-design: true
