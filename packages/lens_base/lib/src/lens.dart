@@ -93,6 +93,11 @@ abstract mixin class ListLens<T> implements LensBase<List<T>> {
     set([...get()]..remove(element));
   }
 
+  /// Removes an element at a specific index from the list managed by this lens.
+  void removeAt(int index) {
+    set([...get()]..removeAt(index));
+  }
+
   /// Removes all elements from the list managed by this lens.
   void removeAllElements(Iterable<T> elements) {
     set([...get()]..removeWhere((e) => elements.contains(e)));
