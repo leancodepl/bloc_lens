@@ -248,14 +248,17 @@ macro class MakeLenses implements ClassDeclarationsMacro {
                 if (namedArguments['min'] case final min?) ...[
                   'min:',
                   ...min.parts,
+                  ', ',
                 ],
                 if (namedArguments['max'] case final max?) ...[
                   'max:',
                   ...max.parts,
+                  ', ',
                 ],
                 if (namedArguments['step'] case final step?) ...[
                   'step:',
                   ...step.parts,
+                  ', ',
                 ],
               ],
             _ => null,
