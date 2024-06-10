@@ -79,17 +79,17 @@ abstract mixin class NumberLens<T extends num> implements LensBase<T> {
 /// It also provides a lens focused on a specific element of the list.
 abstract mixin class ListLens<T> implements LensBase<List<T>> {
   /// Adds an element to the list managed by this lens.
-  void addElement(T element) {
+  void add(T element) {
     set([...get(), element]);
   }
 
   /// Adds all elements to the list managed by this lens.
-  void addAllElements(Iterable<T> elements) {
+  void addAll(Iterable<T> elements) {
     set([...get(), ...elements]);
   }
 
   /// Removes an element from the list managed by this lens.
-  void removeElement(T element) {
+  void remove(T element) {
     set([...get()]..remove(element));
   }
 
@@ -99,17 +99,17 @@ abstract mixin class ListLens<T> implements LensBase<List<T>> {
   }
 
   /// Removes all elements from the list managed by this lens.
-  void removeAllElements(Iterable<T> elements) {
+  void removeAll(Iterable<T> elements) {
     set([...get()]..removeWhere((e) => elements.contains(e)));
   }
 
   /// Toggles an element in the list managed by this lens.
   /// If the element is in the list, it is removed. Otherwise, it is added.
-  void toggleListElement(T element) {
+  void toggleElement(T element) {
     if (contains(element)) {
-      removeElement(element);
+      remove(element);
     } else {
-      addElement(element);
+      add(element);
     }
   }
 

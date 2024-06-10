@@ -5,7 +5,7 @@ repository: https://github.com/leancodepl/bloc_lens
 homepage: https://github.com/leancodepl/bloc_lens/tree/main/packages/bloc_lens_macros
 
 environment:
-  sdk: 3.5.0-214.0.dev
+  sdk: 3.5.0-234.0.dev
 
 dependencies:
   bloc: ^8.1.4

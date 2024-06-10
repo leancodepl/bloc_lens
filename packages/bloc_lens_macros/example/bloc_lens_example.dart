@@ -10,6 +10,7 @@ void main() {
   final myRecordStateCubit = MyRecordStateCubit();
   print(myRecordStateCubit.state);
   myRecordStateCubit.anInt.set(42);
+  myRecordStateCubit.anInt.increment();
   myRecordStateCubit.aBool.toggle();
   myRecordStateCubit.aList.set([1, 2, 3, 4, 5, 6]);
   myRecordStateCubit.aList.at(2).set(69);
@@ -31,6 +32,7 @@ void main() {
   final myNamedStateCubit = MyNamedStateCubit();
   print(myNamedStateCubit.state);
   myNamedStateCubit.anInt.set(42);
+  myNamedStateCubit.anInt.increment();
   myNamedStateCubit.aBool.toggle();
   myNamedStateCubit.aList.set([1, 2, 3, 4, 5, 6]);
   myNamedStateCubit.aList.at(2).set(69);
@@ -52,6 +54,7 @@ void main() {
   final myAliasedStateCubit = MyAliasedStateCubit();
   print(myAliasedStateCubit.state);
   myAliasedStateCubit.anInt.set(42);
+  myAliasedStateCubit.anInt.increment();
   myAliasedStateCubit.aBool.toggle();
   myAliasedStateCubit.aList.set([1, 2, 3, 4, 5, 6]);
   myAliasedStateCubit.aList.at(2).set(69);

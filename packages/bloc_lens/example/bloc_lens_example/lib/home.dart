@@ -15,7 +15,7 @@ class Home extends StatelessWidget {
         title: const Text('Counter App'),
       ),
       floatingActionButton: FloatingActionButton.large(
-        onPressed: () => counters.addElement(0),
+        onPressed: () => counters.add(0),
         child: const Icon(Icons.add),
       ),
       body: ListView.separated(
