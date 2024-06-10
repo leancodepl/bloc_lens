@@ -111,8 +111,9 @@ abstract mixin class ListLens<T> implements LensBase<List<T>> {
   /// Whether the list managed by this lens contains the provided element.
   bool contains(T element) => get().contains(element);
 
-  /// Returns a lens focused on a specific index of the list.
-  IxLens<T> at(int index) => IxLens(this, index);
+  /// Returns a lens focused on a specific index of the list, if the index
+  /// is within the bounds of the list.
+  IxLens<T>? at(int index) => index < get().length ? IxLens(this, index) : null;
 }
 
 /// An [IxLens] manages a value at a specific index of a list.
