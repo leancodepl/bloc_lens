@@ -59,17 +59,17 @@ abstract mixin class NumberLens<T extends num> implements Lens<T> {
   }
 
   /// Increments the value managed by this lens by [step]. If [step] is not provided,
-  /// the value of [NumberLens.step] is used.
+  /// the value of [NumberLens.step] is used, or 1.
   void increment([T? step]) {
-    final actualStep = step ?? this.step!;
+    final actualStep = step ?? this.step ?? 1;
 
     set(_clamp(get() + actualStep as T));
   }
 
   /// Decrements the value managed by this lens by [step]. If [step] is not provided,
-  /// the value of [NumberLens.step] is used.
+  /// the value of [NumberLens.step] is used, or 1.
   void decrement([T? step]) {
-    final actualStep = step ?? this.step!;
+    final actualStep = step ?? this.step ?? 1;
 
     set(_clamp(get() - actualStep as T));
   }
