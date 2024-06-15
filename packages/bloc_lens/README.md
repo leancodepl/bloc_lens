@@ -142,8 +142,23 @@ Widget build(BuildContext context) {
 }
 ```
 
-If you're also using `flutter_hooks`, there's also `useBlocLens` that combines
-finding the cubit and listening to the specific changes:
+If you're also using `flutter_hooks`, you can include in your project a hook that
+combines finding the bloc and listening to the specific changes:
+```dart
+@optionalTypeArgs
+L useBlocLens<B extends BlocBase<S>, S, L extends BlocLens<S, T>, T>(
+    L Function(B cubit) lensGetter, {
+      bool listen = true,
+    }) {
+  final cubit = useContext().read<B>();
+  final lens = lensGetter(cubit);
+  useStream(
+    listen ? cubit.stream.map((_) => lens.get()).distinct() : null,
+  );
+  return lens;
+}
+```
+
 ```dart
 Widget build(BuildContext context) {
   final scaling = useBlocLens((SettingsCubit cubit) => cubit.scaling);
@@ -153,6 +168,9 @@ Widget build(BuildContext context) {
   );
 }
 ```
+
+Please note, that this hook is not provided out-of-the-box in the package
+to keep the dependencies Flutter-less.
 
 For an example of how to use lenses in a sample Flutter app, check out the
 [example app](./example/bloc_lens_example/lib/features/counters_cubit.dart).
