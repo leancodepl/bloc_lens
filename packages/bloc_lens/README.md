@@ -1,6 +1,6 @@
 # Functional lenses for Dart & BLoC
 
-For read the basic documentation & the rationale, please visit
+To read the basic documentation & the rationale, please visit
 the [lens_base](https://pub.dev/packages/lens_base) package.
 
 This package provides a set of BLoC-specific classes and extensions.
@@ -12,7 +12,7 @@ modify these values independently. Normally, you would have to create separate
 methods for each property, like this:
 ```dart
 class SettingsCubit extends Cubit<SettingsState> {
-  SettingsCubit() : super(SettingsState.initial());
+  SettingsCubit() : super(SettingsState());
 
   void setScaling(double scaling) {
     emit(state.copyWith(scaling: scaling));
@@ -147,9 +147,9 @@ combines finding the bloc and listening to the specific changes:
 ```dart
 @optionalTypeArgs
 L useBlocLens<B extends BlocBase<S>, S, L extends BlocLens<S, T>, T>(
-    L Function(B cubit) lensGetter, {
-      bool listen = true,
-    }) {
+  L Function(B cubit) lensGetter, {
+  bool listen = true,
+}) {
   final cubit = useContext().read<B>();
   final lens = lensGetter(cubit);
   useStream(

@@ -8,6 +8,14 @@
 Sometimes, you want to allow other parts of your application to read and modify
 a certain value, but you don't want to expose the entire object or its internals.
 
+In short, you want two operations:
+- get the current value
+- set a new value
+
+This is where lenses come in. They encapsulate the value and provide a way to
+read and modify it, without exposing the object itself. THey are also composable,
+so you can easily modify e.g. a specific item in a list or an entry in a map.
+
 ## Usage
 
 ### Predefined lenses
@@ -74,6 +82,20 @@ which provide additional utility methods:
   lens.add(4); // [1, 2, 3, 4]
   lens.removeAt(1); // [1, 3, 4]
   lens[1].set(100); // [1, 100, 4]
+  ```
+
+- `MapLens` – for maps of values.
+
+  Adds methods for adding, removing, and modifying specific entries, as well as
+  modifying all entries at once.
+
+  ```dart
+  MapLens<String, int> lens;
+  lens.get(); // {'a': 1, 'b': 2}
+  lens.updateAll((key, value) => value * 2); // {'a': 2, 'b': 4}
+  lens['a'].set(42); // {'a': 42, 'b': 4}
+  lens['c'].set(3); // {'a': 42, 'b': 4, 'c': 3}
+  lens['b'].remove(); // {'a': 42, 'c': 3}
   ```
 
 ---
