@@ -58,7 +58,7 @@ information (like the list of allowed values, or the allowed range). With lenses
 you have one object that fully manages the value, together with its constraints:
 
 <table>
-<tr><th>Without lenses</th><th>With lenses</th></tr>
+<tr><th>❌ Without lenses</th><th>✅ With lenses</th></tr>
 <tr>
 <td valign="top">
 

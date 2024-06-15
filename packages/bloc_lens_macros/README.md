@@ -1,4 +1,4 @@
-# Macros for bloc_lens (experimental 🧪)
+# 🧪 Experimental macros for bloc_lens
 
 This package provides macros to simplify the use of the [`bloc_lens`][bloc_lens] package.
 
@@ -9,7 +9,10 @@ you have to create a lens for every field in the state. The `MakeLenses` macro r
 properties of the state class and generates lenses for them, taking into account types
 of each field.
 
-## Before
+<table>
+<tr><th>❌ Without macros</th><th>✅ With macros</th></tr>
+<tr>
+<td valign="top">
 
 ```dart
 class SettingsCubit extends Cubit<SettingsState> {
@@ -60,7 +63,8 @@ class SettingsState {
 }
 ```
 
-## After
+</td>
+<td valign="top">
 
 ```dart
 @MakeLenses()
@@ -84,6 +88,10 @@ class SettingsState {
   final Locale locale;
 }
 ```
+
+</td>
+</tr>
+</table>
 
 ---
 
