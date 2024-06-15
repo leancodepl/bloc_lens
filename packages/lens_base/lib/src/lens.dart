@@ -4,8 +4,8 @@ typedef Getter<T> = T Function();
 /// Signature for a setter-like functions.
 typedef Setter<T> = void Function(T value);
 
-/// A [LensBase] object manages a value by providing [get] and [set] methods.
-abstract class LensBase<T> {
+/// A [Lens] object manages a value by providing [get] and [set] methods.
+abstract class Lens<T> {
   /// Returns the value managed by this lens.
   T get();
 
@@ -13,10 +13,10 @@ abstract class LensBase<T> {
   void set(T value);
 }
 
-/// An [EnumLens] extends a standard [LensBase] by allowing to cycle through
+/// An [EnumLens] extends a standard [Lens] by allowing to cycle through
 /// a list of allowed values. [next] sets values in the order they
 /// are provided in [values].
-abstract mixin class EnumLens<T> implements LensBase<T> {
+abstract mixin class EnumLens<T> implements Lens<T> {
   /// The list of allowed values for this lens.
   List<T> get values;
 
@@ -29,14 +29,14 @@ abstract mixin class EnumLens<T> implements LensBase<T> {
   int get index => values.indexOf(get());
 }
 
-/// A [BoolLens] extends a standard [LensBase] with boolean-specific operations.
-abstract mixin class BoolLens implements LensBase<bool> {
+/// A [BoolLens] extends a standard [Lens] with boolean-specific operations.
+abstract mixin class BoolLens implements Lens<bool> {
   /// Toggles the value of this lens.
   void toggle() => set(!get());
 }
 
-/// A [NumberLens] extends a standard [LensBase] with operations on a target number.
-abstract mixin class NumberLens<T extends num> implements LensBase<T> {
+/// A [NumberLens] extends a standard [Lens] with operations on a target number.
+abstract mixin class NumberLens<T extends num> implements Lens<T> {
   /// An optional lower bound for the value managed by this lens.
   T? get min;
 
@@ -75,9 +75,9 @@ abstract mixin class NumberLens<T extends num> implements LensBase<T> {
   }
 }
 
-/// A [ListLens] extends a standard [LensBase] with operations on a target list.
+/// A [ListLens] extends a standard [Lens] with operations on a target list.
 /// It also provides a lens focused on a specific element of the list.
-abstract mixin class ListLens<T> implements LensBase<List<T>> {
+abstract mixin class ListLens<T> implements Lens<List<T>> {
   /// Adds an element to the list managed by this lens.
   void add(T element) {
     set([...get(), element]);
@@ -118,14 +118,15 @@ abstract mixin class ListLens<T> implements LensBase<List<T>> {
 
   /// Returns a lens focused on a specific index of the list, if the index
   /// is within the bounds of the list.
-  IxLens<T>? at(int index) => index < get().length ? IxLens(this, index) : null;
+  IndexLens<T>? operator [](int index) =>
+      index < get().length ? IndexLens(this, index) : null;
 }
 
-/// An [IxLens] manages a value at a specific index of a list.
+/// An [IndexLens] manages a value at a specific index of a list.
 /// Uses a [ListLens] as a parent lens.
-class IxLens<T> extends LensBase<T> {
-  /// Creates a new [IxLens] with a parent [ListLens] and an index.
-  IxLens(
+class IndexLens<T> extends Lens<T> {
+  /// Creates a new [IndexLens] with a parent [ListLens] and an index.
+  IndexLens(
     this.listLens,
     this.index,
   );
@@ -143,9 +144,8 @@ class IxLens<T> extends LensBase<T> {
   void set(T value) => listLens.set([...listLens.get()]..[index] = value);
 }
 
-/// A [MapLens] extends a standard [LensBase] with operations on a target map.
-abstract mixin class MapLens<K, V extends Object>
-    implements LensBase<Map<K, V>> {
+/// A [MapLens] extends a standard [Lens] with operations on a target map.
+abstract mixin class MapLens<K, V extends Object> implements Lens<Map<K, V>> {
   /// Updates all values in the map managed by this lens.
   void updateAll(V Function(K key, V value) update) {
     set({...get()}..updateAll(update));
@@ -160,9 +160,9 @@ abstract mixin class MapLens<K, V extends Object>
   Iterable<V> get values => get().values;
 }
 
-/// A [MapEntryLens] extends a standard [LensBase] with operations
+/// A [MapEntryLens] extends a standard [Lens] with operations
 /// on a specific entry of a map.
-class MapEntryLens<K, V extends Object> implements LensBase<V?> {
+class MapEntryLens<K, V extends Object> implements Lens<V?> {
   /// Creates a new [MapEntryLens] with a parent [MapLens] and a [key].
   MapEntryLens(
     this.mapLens,
