@@ -3,6 +3,11 @@ description: Lenses and extensions based on lens_base, made for the bloc package
 version: 0.2.0
 repository: https://github.com/leancodepl/bloc_lens
 homepage: https://github.com/leancodepl/bloc_lens/tree/main/packages/bloc_lens
+topics:
+  - bloc
+  - dart
+  - state
+  - state-management
 
 environment:
   sdk: ^3.4.3

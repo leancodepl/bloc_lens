@@ -3,6 +3,12 @@ description: Macros for bloc_lens
 version: 0.2.0-dev.1
 repository: https://github.com/leancodepl/bloc_lens
 homepage: https://github.com/leancodepl/bloc_lens/tree/main/packages/bloc_lens_macros
+topics:
+  - bloc
+  - dart
+  - macros
+  - state
+  - state-management
 
 environment:
   sdk: 3.5.0-266.0.dev
