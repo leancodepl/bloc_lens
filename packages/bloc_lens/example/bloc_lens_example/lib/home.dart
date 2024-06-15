@@ -36,7 +36,7 @@ class _CounterCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final counters = context.watch<CountersCubit>().counters;
-    final counter = counters.at(index);
+    final counter = counters[index];
 
     if (counter == null) {
       return const SizedBox.shrink();

@@ -1,29 +1,38 @@
-# bloc_lens
+# Functional lenses for Dart & BLoC
 
-This package provides a set of bloc-specific classes, made to work with the [`lens_base`][lens_base] package.
+For read the basic documentation & the rationale, please visit
+the [lens_base](https://pub.dev/packages/lens_base) package.
 
-## Example usage
+This package provides a set of BLoC-specific classes and extensions.
 
+## Usage
+
+Let's say you have a BLoC with many properties, and you want an easy way to
+modify these values independently. Normally, you would have to create separate
+methods for each property, like this:
 ```dart
 class SettingsCubit extends Cubit<SettingsState> {
-  late final scaling = numberLens(
-    get: (s) => s.scaling,
-    set: (s, v) => s.copyWith(scaling: v),
-    min: 0.7,
-    max: 1.4,
-    step: 0.1,
-  );
+  SettingsCubit() : super(SettingsState.initial());
 
-  late final hapticFeedback = boolLens(
-    get: (s) => s.hapticFeedback,
-    set: (s, v) => s.copyWith(hapticFeedback: v),
-  );
-  
-  late final themeMode = enumLens(
-    get: (s) => s.themeMode,
-    set: (s, v) => s.copyWith(themeMode: v),
-    values: ThemeMode.values,
-  );
+  void setScaling(double scaling) {
+    emit(state.copyWith(scaling: scaling));
+  }
+
+  void setHapticFeedback(bool hapticFeedback) {
+    emit(state.copyWith(hapticFeedback: hapticFeedback));
+  }
+
+  void setThemeMode(ThemeMode themeMode) {
+    emit(state.copyWith(themeMode: themeMode));
+  }
+
+  void setLocale(Locale locale) {
+    emit(state.copyWith(locale: locale));
+  }
+
+  void setFontSize(double fontSize) {
+    emit(state.copyWith(fontSize: fontSize));
+  }
 }
 
 class SettingsState {
@@ -31,13 +40,129 @@ class SettingsState {
     required this.scaling,
     required this.hapticFeedback,
     required this.themeMode,
+    required this.locale,
+    required this.fontSize,
   });
 
   final double scaling;
   final bool hapticFeedback;
   final ThemeMode themeMode;
+  final Locale locale;
+  final double fontSize;
 }
 ```
+
+But that separates the `getter` and `setter` for each property, which forces you
+to pass around the current value, the way to change it, and possibly some more
+information (like the list of allowed values, or the allowed range). With lenses,
+you have one object that fully manages the value, together with its constraints:
+
+<table>
+<tr><th>Without lenses</th><th>With lenses</th></tr>
+<tr>
+<td valign="top">
+
+```dart
+class MySlider extends StatelessWidget {
+  const MySlider({
+    super.key,
+    required this.value,
+    required this.onChanged,
+    required this.min,
+    required this.max,
+  });
+  
+  final double value;
+  final ValueChanged<double> onChanged;
+  final double min;
+  final double max;
+
+  @override
+  Widget build(BuildContext context) {
+    ...
+  }
+}
+```
+
+</td>
+<td valign="top">
+
+```dart
+class MySlider extends StatelessWidget {
+  const MySlider({
+    super.key,
+    required this.lens,
+  });
+  
+  final NumberLens<double> lens;
+
+  @override
+  Widget build(BuildContext context) {
+    ...
+  }
+}
+```
+
+</td>
+</tr>
+</table>
+
+To define lenses inside BLoCs, you can use the extensions provided by this package:
+
+```dart
+class SettingsCubit extends Cubit<SettingsState> {
+  SettingsCubit() : super(SettingsState());
+
+  late final scaling = numberLens(
+    get: () => state.scaling,
+    set: (value) => state.copyWith(scaling: value),
+    min: 0.5,
+    max: 2.0,
+    increment: 0.1,
+  );
+
+  late final themeMode = enumLens(
+    get: () => state.themeMode,
+    set: (value) => state.copyWith(themeMode: value),
+    values: ThemeMode.values,
+  );
+  
+  ...
+}
+```
+
+You can then use these inside your widgets:
+```dart
+Widget build(BuildContext context) {
+  final cubit = context.watch<SettingsCubit>();
+
+  return MySlider(
+    lens: cubit.scaling,
+  );
+}
+```
+
+If you're also using `flutter_hooks`, there's also `useBlocLens` that combines
+finding the cubit and listening to the specific changes:
+```dart
+Widget build(BuildContext context) {
+  final scaling = useBlocLens((SettingsCubit cubit) => cubit.scaling);
+
+  return MySlider(
+    lens: scaling,
+  );
+}
+```
+
+For an example of how to use lenses in a sample Flutter app, check out the
+[example app](./example/bloc_lens_example/lib/features/counters_cubit.dart).
+
+<br/>
+
+> ### 🧪 **Experimental**
+>
+> If you want to preview an even easier way of using lenses inside BLoCs without any boilerplate,
+> check out the [`bloc_lens_macros`](https://pub.dev/packages/bloc_lens_macros) package.
 
 ---
 

@@ -12,7 +12,7 @@ typedef BlocSetter<S, T> = S Function(S state, T value);
 ///
 /// It can be used to get and set the value of a field in the state.
 /// It automatically emits a new state when the value is set.
-class BlocLens<S, T> implements LensBase<T> {
+class BlocLens<S, T> implements Lens<T> {
   /// Creates a [BlocLens].
   const BlocLens(this._bloc, this._get, this._set);
 

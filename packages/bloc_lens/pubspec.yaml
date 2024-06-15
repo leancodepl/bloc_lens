@@ -1,6 +1,6 @@
 name: bloc_lens
 description: Lenses and extensions based on lens_base, made for the bloc package.
-version: 0.1.0
+version: 0.2.0
 repository: https://github.com/leancodepl/bloc_lens
 homepage: https://github.com/leancodepl/bloc_lens/tree/main/packages/bloc_lens
 
@@ -9,7 +9,10 @@ environment:
 
 dependencies:
   bloc: ^8.1.4
-  lens_base: ^0.1.0
+  leancode_hooks: ^0.0.6
+  lens_base: ^0.2.0
+  meta: ^1.12.0
+  provider: ^6.1.2
 
 dev_dependencies:
-  leancode_lint: ^12.0.0
+  leancode_lint: ^13.0.0
