@@ -1,1 +1,1 @@
-export 'src/bloc_lens_macros.dart';
+export 'src/make_lenses.dart';

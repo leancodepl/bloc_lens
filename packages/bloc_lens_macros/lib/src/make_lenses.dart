@@ -140,7 +140,7 @@ macro class MakeLenses implements ClassDeclarationsMacro {
         ),
       ),
       stateTypeCode: stateType.code,
-      stateTypeName: stateType.identifier.name,
+      stateType: stateType.identifier,
     );
   }
 
@@ -180,7 +180,7 @@ macro class MakeLenses implements ClassDeclarationsMacro {
             })>
         fields,
     required TypeAnnotationCode stateTypeCode,
-    String stateTypeName = '',
+    Identifier? stateType,
   }) async {
     final lib = Uri.parse('package:bloc_lens/src/bloc_lens.dart');
     final blocLens = await builder.resolveIdentifier(lib, 'BlocLens');
@@ -234,7 +234,8 @@ macro class MakeLenses implements ClassDeclarationsMacro {
       };
       final additionalParameters = switch (type) {
         NamedTypeAnnotation(:final identifier) when isEnum => [
-            '${identifier.name}.values,',
+            identifier,
+            '.values,',
           ],
         NamedTypeAnnotation(
           identifier: Identifier(name: 'int' || 'double' || 'num'),
@@ -271,7 +272,9 @@ macro class MakeLenses implements ClassDeclarationsMacro {
           ...lensType,
           '(this,',
           '(state) => state.${field.name},',
-          '(state, value) => $stateTypeName(',
+          '(state, value) => ',
+          if (stateType != null) stateType,
+          '(',
           for (final name in fields.map((f) => f.name))
             '$name: ${name == field.name ? 'value' : 'state.$name'}, ',
           '),',
