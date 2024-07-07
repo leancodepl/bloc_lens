@@ -11,5 +11,8 @@ topics:
 environment:
   sdk: ^3.4.3
 
+dependencies:
+  meta: ^1.12.0
+
 dev_dependencies:
   leancode_lint: ^13.0.0
