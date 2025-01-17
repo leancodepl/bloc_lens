@@ -1,3 +1,7 @@
+## 0.2.1
+
+- Bump `bloc` dependency to `9.0.0`.
+
 ## 0.2.0
 
 - Add an example app.

@@ -4,15 +4,15 @@ publish_to: 'none'
 version: 0.1.0
 
 environment:
-  sdk: 3.4.3
-  flutter: 3.22.2
+  sdk: ^3.6.1
+  flutter: ^3.27.2
 
 dependencies:
   bloc_lens:
     path: ../../../bloc_lens
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.6
+  flutter_bloc: ^9.0.0
 
 dev_dependencies:
   leancode_lint: ^13.0.0
