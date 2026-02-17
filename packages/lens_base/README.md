@@ -1,3 +1,7 @@
+<a href="https://leancode.co/?utm_source=github.com&utm_medium=referral&utm_campaign=lens-base" align="center">
+  <img alt="lens_base" src="https://github.com/user-attachments/assets/43f02647-ea87-4b1d-ac07-9dabfa810f07" />
+</a>
+
 # Functional lenses for Dart
 
 > Developing a Flutter app with BLoC? Check out the [`bloc_lens`](https://pub.dev/packages/bloc_lens)
