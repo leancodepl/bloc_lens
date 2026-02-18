@@ -1,5 +1,5 @@
 <a href="https://leancode.co/?utm_source=github.com&utm_medium=referral&utm_campaign=lens-base" align="center">
-  <img alt="lens_base" src="https://github.com/user-attachments/assets/43f02647-ea87-4b1d-ac07-9dabfa810f07" />
+  <img alt="lens_base" src="https://raw.githubusercontent.com/leancodepl/bloc_lens/refs/heads/main/packages/lens_base/docs/imgs/banner.png" />
 </a>
 
 # Functional lenses for Dart
