@@ -1,3 +1,7 @@
+<a href="https://leancode.co/?utm_source=github.com&utm_medium=referral&utm_campaign=lens-base" align="center">
+  <img alt="lens_base" src="https://raw.githubusercontent.com/leancodepl/bloc_lens/refs/heads/main/packages/lens_base/docs/imgs/banner.png" />
+</a>
+
 # Functional lenses for Dart
 
 > Developing a Flutter app with BLoC? Check out the [`bloc_lens`](https://pub.dev/packages/bloc_lens)
@@ -100,11 +104,32 @@ which provide additional utility methods:
 
 ---
 
-<p align="center">
-   <a href="https://leancode.co/?utm_source=readme&utm_medium=lens_base_package">
-      <img alt="LeanCode" src="https://leancodepublic.blob.core.windows.net/public/wide.png" width="300"/>
-   </a>
-   <p align="center">
-   Built with ☕️ by <a href="https://leancode.co/?utm_source=readme&utm_medium=lens_base_package">LeanCode</a>
-   </p>
-</p>
+## 🛠️ Maintained by LeanCode
+
+<div align="center">
+  <a href="https://leancode.co/?utm_source=github.com&utm_medium=referral&utm_campaign=lens-base">
+    <img src="https://leancodepublic.blob.core.windows.net/public/wide.png" alt="LeanCode Logo" height="100" />
+  </a>
+</div>
+
+This package is built with 💙 by **[LeanCode](https://leancode.co?utm_source=github.com&utm_medium=referral&utm_campaign=lens-base)**.
+We are **top-tier experts** focused on Flutter Enterprise solutions.
+
+### Why LeanCode?
+
+- **Creators of [Patrol](https://patrol.leancode.co/?utm_source=github.com&utm_medium=referral&utm_campaign=lens-base)** – the next-gen testing framework for Flutter.
+
+- **Production-Ready** – We use this package in apps with millions of users.
+- **Full-Cycle Product Development** – We take your product from scratch to long-term maintenance.
+
+<div align="center">
+  <br />
+
+  **Need help with your Flutter project?**
+
+  [**👉 Hire our team**](https://leancode.co/get-estimate?utm_source=github.com&utm_medium=referral&utm_campaign=lens-base)
+  &nbsp;&nbsp;•&nbsp;&nbsp;
+  [Check our other packages](https://pub.dev/packages?q=publisher%3Aleancode.co&sort=downloads)
+
+</div>
+
